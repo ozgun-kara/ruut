@@ -329,7 +329,7 @@ class _FinancePageState extends State<FinancePage> {
                                       .updateValue(index);
                                 },
                                 contentPadding:
-                                    EdgeInsets.fromLTRB(16, 16, 16, 16),
+                                    const EdgeInsets.fromLTRB(16, 16, 16, 16),
                                 leading: Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(20, 0, 0, 0),
@@ -343,7 +343,7 @@ class _FinancePageState extends State<FinancePage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsets.fromLTRB(0, 0, 0, 4),
+                                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 4),
                                       child: Text(
                                         items[index].name ?? '',
                                         style: TextStyle(
@@ -423,7 +423,7 @@ class _FinancePageState extends State<FinancePage> {
                             ),
                           )));
                 } else {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 }
