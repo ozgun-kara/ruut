@@ -1,0 +1,26 @@
+[
+  {
+    "id": 0,
+    "name": "ADVERTISER\n25% Discount",
+    "codeNumber": "AE8D872B091B",
+    "expDate": "10.07.2022",
+    "usesLeft": "8",
+    "worth": "$500"
+  },
+  {
+    "id": 1,
+    "name": "INVESTOR\n17% Discount",
+    "codeNumber": "02A226D32BD8",
+    "expDate": "22.08.2022",
+    "usesLeft": "19",
+    "worth": "$250"
+  },
+  {
+    "id": 2,
+    "name": "DRIVER\n17% Discount",
+    "codeNumber": "086E8A42BEE0",
+    "expDate": "14.12.2022",
+    "usesLeft": "30",
+    "worth": "$1250"
+  }
+]

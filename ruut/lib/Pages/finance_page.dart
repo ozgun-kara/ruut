@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:math' as math;
 import 'package:provider/provider.dart';
 import 'package:ruut/Models/credit_card_model.dart';
+import 'package:ruut/Models/promotion_code_model.dart';
 import 'package:ruut/Providers/credit_card.dart';
 import 'package:ruut/Providers/promotion_code.dart';
 import 'package:flutter/services.dart' as rootBundle;
@@ -27,6 +28,14 @@ class _FinancePageState extends State<FinancePage> {
     final list = json.decode(jsondata) as List<dynamic>;
 
     return list.map((e) => CreditCardModel.fromJson(e)).toList();
+  }
+
+  Future<List<PromotionCodeModel>> getPromotionCodeList() async {
+    final jsondata = await rootBundle.rootBundle
+        .loadString('database/promotion_code_list.json');
+    final list = json.decode(jsondata) as List<dynamic>;
+
+    return list.map((e) => PromotionCodeModel.fromJson(e)).toList();
   }
 
   late double deviceWidth;
@@ -355,7 +364,7 @@ class _FinancePageState extends State<FinancePage> {
                                       ),
                                     ),
                                     Text(
-                                      "03/26",
+                                      items[index].expDate ?? '',
                                       style: TextStyle(
                                         fontSize: 14,
                                         fontFamily: "Cairo-VariableFont_wght",
@@ -477,666 +486,276 @@ class _FinancePageState extends State<FinancePage> {
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
-              child: Material(
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(24),
-                  side: BorderSide(color: Colors.transparent, width: 0),
-                ),
-                child: Stack(
-                  children: [
-                    Material(
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(24),
-                        side: BorderSide(color: Color(0xFFE5E5F0), width: 2),
-                      ),
-                      child: ListTile(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24),
-                          // side: BorderSide(color: Colors.black),
-                        ),
-                        // tileColor: Colors.white,
+            FutureBuilder(
+              future: getPromotionCodeList(),
+              builder: (context, data) {
+                if (data.hasError) {
+                  return Center(child: Text("${data.error}"));
+                } else if (data.hasData) {
+                  var items = data.data as List<PromotionCodeModel>;
 
-                        tileColor:
-                            Provider.of<PromotionCode>(context).selectedCode ==
-                                    0
-                                ? Colors.white
-                                : Color(0xFFF6F6FB),
+                  return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: items == null ? 0 : items.length,
+                      itemBuilder: ((context, index) => Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
+                            child: Material(
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(24),
+                                side: BorderSide(
+                                    color: Colors.transparent, width: 0),
+                              ),
+                              child: Stack(
+                                children: [
+                                  Material(
+                                    elevation: 0,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(24),
+                                      side: BorderSide(
+                                          color: Color(0xFFE5E5F0), width: 2),
+                                    ),
+                                    child: ListTile(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(24),
+                                        // side: BorderSide(color: Colors.black),
+                                      ),
+                                      // tileColor: Colors.white,
 
-                        onTap: () {
-                          Provider.of<PromotionCode>(context, listen: false)
-                              .updateValue(0);
-                        },
+                                      tileColor:
+                                          Provider.of<PromotionCode>(context)
+                                                      .selectedCode ==
+                                                  index
+                                              ? Colors.white
+                                              : Color(0xFFF6F6FB),
 
-                        contentPadding: EdgeInsets.fromLTRB(0, 16, 16, 16),
-                        leading: Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
-                          child: Transform.rotate(
-                            angle: -math.pi / 2,
-                            child: Text(
-                              "ADVERTISER\n25% Discount",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontFamily: "Cairo-VariableFont_wght",
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF8C8CB1),
-                              ),
-                            ),
-                          ),
-                        ),
-                        title: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                              child: Text(
-                                "AE8D872B091B",
-                                style: TextStyle(
-                                  fontSize: 24,
-                                  letterSpacing: 2,
-                                  fontFamily: "Cairo-VariableFont_wght",
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFF01023C),
-                                ),
-                              ),
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  "Expiry: ",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: "Cairo-VariableFont_wght",
-                                    fontWeight: FontWeight.w500,
-                                    color: Color(0xFF8C8CB1),
-                                  ),
-                                ),
-                                Text(
-                                  "10.07.2022",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: "Cairo-VariableFont_wght",
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFF8C8CB1),
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(12, 0, 12, 0),
-                                  child: SvgPicture.asset(
-                                    'assets/images/dot.svg',
-                                    width: 4,
-                                    height: 4,
-                                  ),
-                                ),
-                                Text(
-                                  "8 ",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: "Cairo-VariableFont_wght",
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFF8C8CB1),
-                                  ),
-                                ),
-                                Text(
-                                  "Uses Left",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: "Cairo-VariableFont_wght",
-                                    fontWeight: FontWeight.w500,
-                                    color: Color(0xFF8C8CB1),
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(12, 0, 12, 0),
-                                  child: SvgPicture.asset(
-                                    'assets/images/dot.svg',
-                                    width: 4,
-                                    height: 4,
-                                  ),
-                                ),
-                                Text(
-                                  "\$500 ",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: "Cairo-VariableFont_wght",
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFF8C8CB1),
-                                  ),
-                                ),
-                                Text(
-                                  "Worth",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: "Cairo-VariableFont_wght",
-                                    fontWeight: FontWeight.w500,
-                                    color: Color(0xFF8C8CB1),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                              child: Container(
-                                width: 150,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                      child: Text(
-                                        "Set as Default",
-                                        style: TextStyle(
-                                          fontSize: 10,
-                                          fontFamily: "Cairo-VariableFont_wght",
-                                          fontWeight: FontWeight.bold,
-                                          color: Color(0xFF8C8CB1),
+                                      onTap: () {
+                                        Provider.of<PromotionCode>(context,
+                                                listen: false)
+                                            .updateValue(index);
+                                      },
+
+                                      contentPadding:
+                                          EdgeInsets.fromLTRB(0, 16, 16, 16),
+                                      leading: Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            0, 15, 0, 0),
+                                        child: Transform.rotate(
+                                          angle: -math.pi / 2,
+                                          child: Text(
+                                            items[index].name ?? '',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontSize: 12,
+                                              fontFamily:
+                                                  "Cairo-VariableFont_wght",
+                                              fontWeight: FontWeight.bold,
+                                              color: Color(0xFF8C8CB1),
+                                            ),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          20, 0, 20, 0),
-                                      child: SvgPicture.asset(
-                                        'assets/images/dot.svg',
-                                        width: 4,
-                                        height: 4,
+                                      title: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                            child: Text(
+                                              items[index].codeNumber ?? '',
+                                              style: TextStyle(
+                                                fontSize: 24,
+                                                letterSpacing: 2,
+                                                fontFamily:
+                                                    "Cairo-VariableFont_wght",
+                                                fontWeight: FontWeight.bold,
+                                                color: Color(0xFF01023C),
+                                              ),
+                                            ),
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                "Expiry: ",
+                                                style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontFamily:
+                                                      "Cairo-VariableFont_wght",
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Color(0xFF8C8CB1),
+                                                ),
+                                              ),
+                                              Text(
+                                                items[index].expDate ?? '',
+                                                style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontFamily:
+                                                      "Cairo-VariableFont_wght",
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Color(0xFF8C8CB1),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.fromLTRB(
+                                                        12, 0, 12, 0),
+                                                child: SvgPicture.asset(
+                                                  'assets/images/dot.svg',
+                                                  width: 4,
+                                                  height: 4,
+                                                ),
+                                              ),
+                                              Text(
+                                                items[index].usesLeft ?? '',
+                                                style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontFamily:
+                                                      "Cairo-VariableFont_wght",
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Color(0xFF8C8CB1),
+                                                ),
+                                              ),
+                                              Text(
+                                                "Uses Left",
+                                                style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontFamily:
+                                                      "Cairo-VariableFont_wght",
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Color(0xFF8C8CB1),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.fromLTRB(
+                                                        12, 0, 12, 0),
+                                                child: SvgPicture.asset(
+                                                  'assets/images/dot.svg',
+                                                  width: 4,
+                                                  height: 4,
+                                                ),
+                                              ),
+                                              Text(
+                                                items[index].worth ?? '',
+                                                style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontFamily:
+                                                      "Cairo-VariableFont_wght",
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Color(0xFF8C8CB1),
+                                                ),
+                                              ),
+                                              Text(
+                                                "Worth",
+                                                style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontFamily:
+                                                      "Cairo-VariableFont_wght",
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Color(0xFF8C8CB1),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(
+                                                0, 10, 0, 0),
+                                            child: Container(
+                                              width: 150,
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsets.fromLTRB(
+                                                            0, 0, 0, 0),
+                                                    child: Text(
+                                                      "Set as Default",
+                                                      style: TextStyle(
+                                                        fontSize: 10,
+                                                        fontFamily:
+                                                            "Cairo-VariableFont_wght",
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color:
+                                                            Color(0xFF8C8CB1),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding: const EdgeInsets
+                                                        .fromLTRB(20, 0, 20, 0),
+                                                    child: SvgPicture.asset(
+                                                      'assets/images/dot.svg',
+                                                      width: 4,
+                                                      height: 4,
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsets.fromLTRB(
+                                                            0, 0, 0, 0),
+                                                    child: Text(
+                                                      "Delete",
+                                                      style: TextStyle(
+                                                        fontSize: 10,
+                                                        fontFamily:
+                                                            "Cairo-VariableFont_wght",
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color:
+                                                            Color(0xFFEB1919),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          )
+                                        ],
                                       ),
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                      child: Text(
-                                        "Delete",
-                                        style: TextStyle(
-                                          fontSize: 10,
-                                          fontFamily: "Cairo-VariableFont_wght",
-                                          fontWeight: FontWeight.bold,
-                                          color: Color(0xFFEB1919),
-                                        ),
+                                  ),
+                                  Positioned(
+                                    left: 60,
+                                    top: -18,
+                                    child: Container(
+                                      width: 32,
+                                      height: 30,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        border: Border.all(
+                                            color: Color(0xFFE5E5F0), width: 2),
+                                        color: Color(0xFFF6F6FB),
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      left: 60,
-                      top: -18,
-                      child: Container(
-                        width: 32,
-                        height: 30,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          border:
-                              Border.all(color: Color(0xFFE5E5F0), width: 2),
-                          color: Color(0xFFF6F6FB),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      left: 60,
-                      bottom: -18,
-                      child: Container(
-                        width: 32,
-                        height: 30,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          border:
-                              Border.all(color: Color(0xFFE5E5F0), width: 2),
-                          color: Color(0xFFF6F6FB),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
-              child: Material(
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(24),
-                  side: BorderSide(color: Colors.transparent, width: 0),
-                ),
-                child: Stack(
-                  children: [
-                    Material(
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(24),
-                        side: BorderSide(color: Color(0xFFE5E5F0), width: 2),
-                      ),
-                      child: ListTile(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24),
-                          // side: BorderSide(color: Colors.black),
-                        ),
-                        tileColor:
-                            Provider.of<PromotionCode>(context).selectedCode ==
-                                    1
-                                ? Colors.white
-                                : Color(0xFFF6F6FB),
-                        onTap: () {
-                          Provider.of<PromotionCode>(context, listen: false)
-                              .updateValue(1);
-                        },
-                        contentPadding: EdgeInsets.fromLTRB(0, 16, 16, 16),
-                        leading: Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
-                          child: Transform.rotate(
-                            angle: -math.pi / 2,
-                            child: Text(
-                              "INVESTOR\n17% Discount ",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontFamily: "Cairo-VariableFont_wght",
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF8C8CB1),
-                              ),
-                            ),
-                          ),
-                        ),
-                        title: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                              child: Text(
-                                "02A226D32BD8",
-                                style: TextStyle(
-                                  fontSize: 24,
-                                  letterSpacing: 2,
-                                  fontFamily: "Cairo-VariableFont_wght",
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFF01023C),
-                                ),
-                              ),
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  "Expiry: ",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: "Cairo-VariableFont_wght",
-                                    fontWeight: FontWeight.w500,
-                                    color: Color(0xFF8C8CB1),
                                   ),
-                                ),
-                                Text(
-                                  "22.08.2022",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: "Cairo-VariableFont_wght",
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFF8C8CB1),
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(12, 0, 12, 0),
-                                  child: SvgPicture.asset(
-                                    'assets/images/dot.svg',
-                                    width: 4,
-                                    height: 4,
-                                  ),
-                                ),
-                                Text(
-                                  "19 ",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: "Cairo-VariableFont_wght",
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFF8C8CB1),
-                                  ),
-                                ),
-                                Text(
-                                  "Uses Left",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: "Cairo-VariableFont_wght",
-                                    fontWeight: FontWeight.w500,
-                                    color: Color(0xFF8C8CB1),
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(12, 0, 12, 0),
-                                  child: SvgPicture.asset(
-                                    'assets/images/dot.svg',
-                                    width: 4,
-                                    height: 4,
-                                  ),
-                                ),
-                                Text(
-                                  "\$250 ",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: "Cairo-VariableFont_wght",
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFF8C8CB1),
-                                  ),
-                                ),
-                                Text(
-                                  "Worth",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: "Cairo-VariableFont_wght",
-                                    fontWeight: FontWeight.w500,
-                                    color: Color(0xFF8C8CB1),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                              child: Container(
-                                width: 150,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                      child: Text(
-                                        "Set as Default",
-                                        style: TextStyle(
-                                          fontSize: 10,
-                                          fontFamily: "Cairo-VariableFont_wght",
-                                          fontWeight: FontWeight.bold,
-                                          color: Color(0xFF8C8CB1),
-                                        ),
+                                  Positioned(
+                                    left: 60,
+                                    bottom: -18,
+                                    child: Container(
+                                      width: 32,
+                                      height: 30,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        border: Border.all(
+                                            color: Color(0xFFE5E5F0), width: 2),
+                                        color: Color(0xFFF6F6FB),
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          20, 0, 20, 0),
-                                      child: SvgPicture.asset(
-                                        'assets/images/dot.svg',
-                                        width: 4,
-                                        height: 4,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                      child: Text(
-                                        "Delete",
-                                        style: TextStyle(
-                                          fontSize: 10,
-                                          fontFamily: "Cairo-VariableFont_wght",
-                                          fontWeight: FontWeight.bold,
-                                          color: Color(0xFFEB1919),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      left: 60,
-                      top: -18,
-                      child: Container(
-                        width: 32,
-                        height: 30,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          border:
-                              Border.all(color: Color(0xFFE5E5F0), width: 2),
-                          color: Color(0xFFF6F6FB),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      left: 60,
-                      bottom: -18,
-                      child: Container(
-                        width: 32,
-                        height: 30,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          border:
-                              Border.all(color: Color(0xFFE5E5F0), width: 2),
-                          color: Color(0xFFF6F6FB),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
-              child: Material(
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(24),
-                  side: BorderSide(color: Colors.transparent, width: 0),
-                ),
-                child: Stack(
-                  children: [
-                    Material(
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(24),
-                        side: BorderSide(color: Color(0xFFE5E5F0), width: 2),
-                      ),
-                      child: ListTile(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24),
-                          // side: BorderSide(color: Colors.black),
-                        ),
-                        tileColor:
-                            Provider.of<PromotionCode>(context).selectedCode ==
-                                    2
-                                ? Colors.white
-                                : Color(0xFFF6F6FB),
-                        onTap: () {
-                          Provider.of<PromotionCode>(context, listen: false)
-                              .updateValue(2);
-                        },
-                        contentPadding: EdgeInsets.fromLTRB(0, 16, 16, 16),
-                        leading: Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
-                          child: Transform.rotate(
-                            angle: -math.pi / 2,
-                            child: Text(
-                              "DRIVER\n17% Discount",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontFamily: "Cairo-VariableFont_wght",
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF8C8CB1),
+                                  )
+                                ],
                               ),
                             ),
-                          ),
-                        ),
-                        title: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                              child: Text(
-                                "086E8A42BEE0",
-                                style: TextStyle(
-                                  fontSize: 24,
-                                  letterSpacing: 2,
-                                  fontFamily: "Cairo-VariableFont_wght",
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFF01023C),
-                                ),
-                              ),
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  "Expiry: ",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: "Cairo-VariableFont_wght",
-                                    fontWeight: FontWeight.w500,
-                                    color: Color(0xFF8C8CB1),
-                                  ),
-                                ),
-                                Text(
-                                  "14.12.2022",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: "Cairo-VariableFont_wght",
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFF8C8CB1),
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(12, 0, 12, 0),
-                                  child: SvgPicture.asset(
-                                    'assets/images/dot.svg',
-                                    width: 4,
-                                    height: 4,
-                                  ),
-                                ),
-                                Text(
-                                  "30 ",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: "Cairo-VariableFont_wght",
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFF8C8CB1),
-                                  ),
-                                ),
-                                Text(
-                                  "Uses Left",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: "Cairo-VariableFont_wght",
-                                    fontWeight: FontWeight.w500,
-                                    color: Color(0xFF8C8CB1),
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(12, 0, 12, 0),
-                                  child: SvgPicture.asset(
-                                    'assets/images/dot.svg',
-                                    width: 4,
-                                    height: 4,
-                                  ),
-                                ),
-                                Text(
-                                  "\$1250 ",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: "Cairo-VariableFont_wght",
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFF8C8CB1),
-                                  ),
-                                ),
-                                Text(
-                                  "Worth",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: "Cairo-VariableFont_wght",
-                                    fontWeight: FontWeight.w500,
-                                    color: Color(0xFF8C8CB1),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                              child: Container(
-                                width: 150,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                      child: Text(
-                                        "Set as Default",
-                                        style: TextStyle(
-                                          fontSize: 10,
-                                          fontFamily: "Cairo-VariableFont_wght",
-                                          fontWeight: FontWeight.bold,
-                                          color: Color(0xFF8C8CB1),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          20, 0, 20, 0),
-                                      child: SvgPicture.asset(
-                                        'assets/images/dot.svg',
-                                        width: 4,
-                                        height: 4,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                      child: Text(
-                                        "Delete",
-                                        style: TextStyle(
-                                          fontSize: 10,
-                                          fontFamily: "Cairo-VariableFont_wght",
-                                          fontWeight: FontWeight.bold,
-                                          color: Color(0xFFEB1919),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      left: 60,
-                      top: -18,
-                      child: Container(
-                        width: 32,
-                        height: 30,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          border:
-                              Border.all(color: Color(0xFFE5E5F0), width: 2),
-                          color: Color(0xFFF6F6FB),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      left: 60,
-                      bottom: -18,
-                      child: Container(
-                        width: 32,
-                        height: 30,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          border:
-                              Border.all(color: Color(0xFFE5E5F0), width: 2),
-                          color: Color(0xFFF6F6FB),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
+                          )));
+                } else {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              },
             ),
           ],
         ),

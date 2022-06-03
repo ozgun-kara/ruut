@@ -3,7 +3,7 @@ class PromotionCodeModel {
   String? name;
   String? codeNumber;
   String? expDate;
-  int? usesLeft;
+  String? usesLeft;
   String? worth;
 
   PromotionCodeModel(
