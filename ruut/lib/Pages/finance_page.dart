@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:math' as math;
 import 'package:provider/provider.dart';
-import 'package:ruut/Providers/creditCard.dart';
-import 'package:ruut/Providers/promotionCode.dart';
+import 'package:ruut/Providers/credit_card.dart';
+import 'package:ruut/Providers/promotion_code.dart';
 
 class FinancePage extends StatefulWidget {
   const FinancePage({Key? key}) : super(key: key);

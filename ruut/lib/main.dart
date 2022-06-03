@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ruut/Pages/finance_page.dart';
 import 'package:provider/provider.dart';
-import 'package:ruut/Providers/creditCard.dart';
-import 'package:ruut/Providers/promotionCode.dart';
+import 'package:ruut/Providers/credit_card.dart';
+import 'package:ruut/Providers/promotion_code.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
