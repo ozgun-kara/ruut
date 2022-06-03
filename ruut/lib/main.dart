@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:ruut/Pages/finance_page.dart';
+import 'package:provider/provider.dart';
+import 'package:ruut/Providers/creditCard.dart';
+import 'package:ruut/Providers/promotionCode.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider<CreditCard>(
+      create: (BuildContext context) => CreditCard(),
+    ),
+    ChangeNotifierProvider<PromotionCode>(
+      create: (BuildContext context) => PromotionCode(),
+    )
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:math' as math;
+import 'package:provider/provider.dart';
+import 'package:ruut/Providers/creditCard.dart';
+import 'package:ruut/Providers/promotionCode.dart';
 
 class FinancePage extends StatefulWidget {
   const FinancePage({Key? key}) : super(key: key);
@@ -213,7 +216,7 @@ class _FinancePageState extends State<FinancePage> {
               ),
             ),
 
-            // CRETID CARDS PART
+            // CREDIT CARDS PART
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -272,7 +275,11 @@ class _FinancePageState extends State<FinancePage> {
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
               child: Material(
-                elevation: 5,
+                // elevation: selectedCard == 0 ? 5 : 0,
+
+                elevation:
+                    Provider.of<CreditCard>(context).selectedCard == 0 ? 5 : 0,
+
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(24),
                   // side: BorderSide(color: Colors.black),
@@ -282,7 +289,20 @@ class _FinancePageState extends State<FinancePage> {
                     borderRadius: BorderRadius.circular(24),
                     // side: BorderSide(color: Colors.black),
                   ),
-                  tileColor: Colors.white,
+                  // tileColor: selectedCard == 0 ? Colors.white : Color(0xFFF6F6FB),
+
+                  tileColor: Provider.of<CreditCard>(context).selectedCard == 0
+                      ? Colors.white
+                      : Color(0xFFF6F6FB),
+
+                  onTap: () {
+                    // setState(() {
+                    //   selectedCard = 0;
+                    // });
+
+                    Provider.of<CreditCard>(context, listen: false)
+                        .updateValue(0);
+                  },
                   contentPadding: EdgeInsets.fromLTRB(16, 16, 16, 16),
                   leading: Padding(
                     padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
@@ -373,7 +393,11 @@ class _FinancePageState extends State<FinancePage> {
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
               child: Material(
-                elevation: 0,
+                // elevation: selectedCard == 1 ? 5 : 0,
+
+                elevation:
+                    Provider.of<CreditCard>(context).selectedCard == 1 ? 5 : 0,
+
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(24),
                   // side: BorderSide(color: Colors.black),
@@ -383,14 +407,24 @@ class _FinancePageState extends State<FinancePage> {
                     borderRadius: BorderRadius.circular(24),
                     // side: BorderSide(color: Colors.black),
                   ),
-                  tileColor: Color(0xFFF6F6FB),
+                  tileColor: Provider.of<CreditCard>(context).selectedCard == 1
+                      ? Colors.white
+                      : Color(0xFFF6F6FB),
+                  onTap: () {
+                    // setState(() {
+                    //   selectedCard = 1;
+                    // });
+
+                    Provider.of<CreditCard>(context, listen: false)
+                        .updateValue(1);
+                  },
                   contentPadding: EdgeInsets.fromLTRB(16, 16, 16, 16),
                   leading: Padding(
                     padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                     child: SvgPicture.asset(
                       'assets/images/visa.svg',
                       width: 30,
-                      height: 10,
+                      height: 30,
                       color: Color(0xFF20225F),
                     ),
                   ),
@@ -475,7 +509,11 @@ class _FinancePageState extends State<FinancePage> {
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
               child: Material(
-                elevation: 0,
+                // elevation: selectedCard == 2 ? 5 : 0,
+
+                elevation:
+                    Provider.of<CreditCard>(context).selectedCard == 2 ? 5 : 0,
+
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(24),
                   // side: BorderSide(color: Colors.black),
@@ -485,14 +523,24 @@ class _FinancePageState extends State<FinancePage> {
                     borderRadius: BorderRadius.circular(24),
                     // side: BorderSide(color: Colors.black),
                   ),
-                  tileColor: Color(0xFFF6F6FB),
+                  tileColor: Provider.of<CreditCard>(context).selectedCard == 2
+                      ? Colors.white
+                      : Color(0xFFF6F6FB),
+                  onTap: () {
+                    // setState(() {
+                    //   selectedCard = 2;
+                    // });
+
+                    Provider.of<CreditCard>(context, listen: false)
+                        .updateValue(2);
+                  },
                   contentPadding: EdgeInsets.fromLTRB(16, 16, 16, 16),
                   leading: Padding(
                     padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
                     child: SvgPicture.asset(
                       'assets/images/visa.svg',
                       width: 30,
-                      height: 10,
+                      height: 30,
                       color: Color(0xFF20225F),
                     ),
                   ),
@@ -652,7 +700,19 @@ class _FinancePageState extends State<FinancePage> {
                           borderRadius: BorderRadius.circular(24),
                           // side: BorderSide(color: Colors.black),
                         ),
-                        tileColor: Colors.white,
+                        // tileColor: Colors.white,
+
+                        tileColor:
+                            Provider.of<PromotionCode>(context).selectedCode ==
+                                    0
+                                ? Colors.white
+                                : Color(0xFFF6F6FB),
+
+                        onTap: () {
+                          Provider.of<PromotionCode>(context, listen: false)
+                              .updateValue(0);
+                        },
+
                         contentPadding: EdgeInsets.fromLTRB(0, 16, 16, 16),
                         leading: Padding(
                           padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
@@ -863,7 +923,15 @@ class _FinancePageState extends State<FinancePage> {
                           borderRadius: BorderRadius.circular(24),
                           // side: BorderSide(color: Colors.black),
                         ),
-                        tileColor: Color(0xFFF6F6FB),
+                        tileColor:
+                            Provider.of<PromotionCode>(context).selectedCode ==
+                                    1
+                                ? Colors.white
+                                : Color(0xFFF6F6FB),
+                        onTap: () {
+                          Provider.of<PromotionCode>(context, listen: false)
+                              .updateValue(1);
+                        },
                         contentPadding: EdgeInsets.fromLTRB(0, 16, 16, 16),
                         leading: Padding(
                           padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
@@ -1074,7 +1142,15 @@ class _FinancePageState extends State<FinancePage> {
                           borderRadius: BorderRadius.circular(24),
                           // side: BorderSide(color: Colors.black),
                         ),
-                        tileColor: Color(0xFFF6F6FB),
+                        tileColor:
+                            Provider.of<PromotionCode>(context).selectedCode ==
+                                    2
+                                ? Colors.white
+                                : Color(0xFFF6F6FB),
+                        onTap: () {
+                          Provider.of<PromotionCode>(context, listen: false)
+                              .updateValue(2);
+                        },
                         contentPadding: EdgeInsets.fromLTRB(0, 16, 16, 16),
                         leading: Padding(
                           padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
