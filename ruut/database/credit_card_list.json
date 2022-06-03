@@ -1,0 +1,23 @@
+[
+  {
+    "id": 0,
+    "name": "Primary Card",
+    "cardNumber": "**** **** **** 0003",
+    "expDate": "03/26",
+    "icon": "assets/images/mastercard.svg"
+  },
+  {
+    "id": 1,
+    "name": "Primary Card",
+    "cardNumber": "**** **** **** 7879",
+    "expDate": "06/28",
+    "icon": "assets/images/visa.svg"
+  },
+  {
+    "id": 2,
+    "name": "Primary Card",
+    "cardNumber": "**** **** **** 3204",
+    "expDate": "04/27",
+    "icon": "assets/images/visa.svg"
+  }
+]

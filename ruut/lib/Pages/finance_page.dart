@@ -1,9 +1,12 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:math' as math;
 import 'package:provider/provider.dart';
+import 'package:ruut/Models/credit_card_model.dart';
 import 'package:ruut/Providers/credit_card.dart';
 import 'package:ruut/Providers/promotion_code.dart';
+import 'package:flutter/services.dart' as rootBundle;
 
 class FinancePage extends StatefulWidget {
   const FinancePage({Key? key}) : super(key: key);
@@ -16,6 +19,14 @@ class _FinancePageState extends State<FinancePage> {
   @override
   void initState() {
     super.initState();
+  }
+
+  Future<List<CreditCardModel>> getCreditCardList() async {
+    final jsondata = await rootBundle.rootBundle
+        .loadString('database/credit_card_list.json');
+    final list = json.decode(jsondata) as List<dynamic>;
+
+    return list.map((e) => CreditCardModel.fromJson(e)).toList();
   }
 
   late double deviceWidth;
@@ -272,355 +283,142 @@ class _FinancePageState extends State<FinancePage> {
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
-              child: Material(
-                // elevation: selectedCard == 0 ? 5 : 0,
+            FutureBuilder(
+              future: getCreditCardList(),
+              builder: (context, data) {
+                if (data.hasError) {
+                  return Center(child: Text("${data.error}"));
+                } else if (data.hasData) {
+                  var items = data.data as List<CreditCardModel>;
 
-                elevation:
-                    Provider.of<CreditCard>(context).selectedCard == 0 ? 5 : 0,
-
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(24),
-                  // side: BorderSide(color: Colors.black),
-                ),
-                child: ListTile(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24),
-                    // side: BorderSide(color: Colors.black),
-                  ),
-                  // tileColor: selectedCard == 0 ? Colors.white : Color(0xFFF6F6FB),
-
-                  tileColor: Provider.of<CreditCard>(context).selectedCard == 0
-                      ? Colors.white
-                      : Color(0xFFF6F6FB),
-
-                  onTap: () {
-                    // setState(() {
-                    //   selectedCard = 0;
-                    // });
-
-                    Provider.of<CreditCard>(context, listen: false)
-                        .updateValue(0);
-                  },
-                  contentPadding: EdgeInsets.fromLTRB(16, 16, 16, 16),
-                  leading: Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                    child: SvgPicture.asset(
-                      'assets/images/mastercard.svg',
-                      width: 30,
-                      height: 24,
-                    ),
-                  ),
-                  title: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0, 0, 0, 4),
-                        child: Text(
-                          "Primary Card",
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontFamily: "Cairo-VariableFont_wght",
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF01023C),
-                          ),
-                        ),
-                      ),
-                      Text(
-                        "**** **** **** 0003",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: "Cairo-VariableFont_wght",
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF01023C),
-                        ),
-                      ),
-                      Text(
-                        "03/26",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: "Cairo-VariableFont_wght",
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF01023C),
-                        ),
-                      ),
-                    ],
-                  ),
-                  trailing: Container(
-                    width: 150,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                          child: Text(
-                            "Set as Default",
-                            style: TextStyle(
-                              fontSize: 10,
-                              fontFamily: "Cairo-VariableFont_wght",
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF8C8CB1),
+                  return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: items == null ? 0 : items.length,
+                      itemBuilder: ((context, index) => Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
+                            child: Material(
+                              elevation: Provider.of<CreditCard>(context)
+                                          .selectedCard ==
+                                      index
+                                  ? 5
+                                  : 0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(24),
+                              ),
+                              child: ListTile(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(24),
+                                ),
+                                tileColor: Provider.of<CreditCard>(context)
+                                            .selectedCard ==
+                                        index
+                                    ? Colors.white
+                                    : Color(0xFFF6F6FB),
+                                onTap: () {
+                                  Provider.of<CreditCard>(context,
+                                          listen: false)
+                                      .updateValue(index);
+                                },
+                                contentPadding:
+                                    EdgeInsets.fromLTRB(16, 16, 16, 16),
+                                leading: Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                                  child: SvgPicture.asset(
+                                    items[index].icon ?? '',
+                                    width: 30,
+                                    height: 24,
+                                  ),
+                                ),
+                                title: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.fromLTRB(0, 0, 0, 4),
+                                      child: Text(
+                                        items[index].name ?? '',
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          fontFamily: "Cairo-VariableFont_wght",
+                                          fontWeight: FontWeight.w500,
+                                          color: Color(0xFF01023C),
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      items[index].cardNumber ?? '',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontFamily: "Cairo-VariableFont_wght",
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFF01023C),
+                                      ),
+                                    ),
+                                    Text(
+                                      "03/26",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontFamily: "Cairo-VariableFont_wght",
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFF01023C),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                trailing: Container(
+                                  width: 150,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                        child: Text(
+                                          "Set as Default",
+                                          style: TextStyle(
+                                            fontSize: 10,
+                                            fontFamily:
+                                                "Cairo-VariableFont_wght",
+                                            fontWeight: FontWeight.bold,
+                                            color: Color(0xFF8C8CB1),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            20, 0, 20, 0),
+                                        child: SvgPicture.asset(
+                                          'assets/images/dot.svg',
+                                          width: 4,
+                                          height: 4,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                        child: Text(
+                                          "Delete",
+                                          style: TextStyle(
+                                            fontSize: 10,
+                                            fontFamily:
+                                                "Cairo-VariableFont_wght",
+                                            fontWeight: FontWeight.bold,
+                                            color: Color(0xFFEB1919),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                          child: SvgPicture.asset(
-                            'assets/images/dot.svg',
-                            width: 4,
-                            height: 4,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                          child: Text(
-                            "Delete",
-                            style: TextStyle(
-                              fontSize: 10,
-                              fontFamily: "Cairo-VariableFont_wght",
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFFEB1919),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
-              child: Material(
-                // elevation: selectedCard == 1 ? 5 : 0,
-
-                elevation:
-                    Provider.of<CreditCard>(context).selectedCard == 1 ? 5 : 0,
-
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(24),
-                  // side: BorderSide(color: Colors.black),
-                ),
-                child: ListTile(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24),
-                    // side: BorderSide(color: Colors.black),
-                  ),
-                  tileColor: Provider.of<CreditCard>(context).selectedCard == 1
-                      ? Colors.white
-                      : Color(0xFFF6F6FB),
-                  onTap: () {
-                    // setState(() {
-                    //   selectedCard = 1;
-                    // });
-
-                    Provider.of<CreditCard>(context, listen: false)
-                        .updateValue(1);
-                  },
-                  contentPadding: EdgeInsets.fromLTRB(16, 16, 16, 16),
-                  leading: Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                    child: SvgPicture.asset(
-                      'assets/images/visa.svg',
-                      width: 30,
-                      height: 30,
-                      color: Color(0xFF20225F),
-                    ),
-                  ),
-                  title: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0, 0, 0, 4),
-                        child: Text(
-                          "Primary Card",
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontFamily: "Cairo-VariableFont_wght",
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF01023C),
-                          ),
-                        ),
-                      ),
-                      Text(
-                        "**** **** **** 7879",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: "Cairo-VariableFont_wght",
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF01023C),
-                        ),
-                      ),
-                      Text(
-                        "06/28",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: "Cairo-VariableFont_wght",
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF01023C),
-                        ),
-                      ),
-                    ],
-                  ),
-                  trailing: Container(
-                    width: 150,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                          child: Text(
-                            "Set as Default",
-                            style: TextStyle(
-                              fontSize: 10,
-                              fontFamily: "Cairo-VariableFont_wght",
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF8C8CB1),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                          child: SvgPicture.asset(
-                            'assets/images/dot.svg',
-                            width: 4,
-                            height: 4,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                          child: Text(
-                            "Delete",
-                            style: TextStyle(
-                              fontSize: 10,
-                              fontFamily: "Cairo-VariableFont_wght",
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFFEB1919),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
-              child: Material(
-                // elevation: selectedCard == 2 ? 5 : 0,
-
-                elevation:
-                    Provider.of<CreditCard>(context).selectedCard == 2 ? 5 : 0,
-
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(24),
-                  // side: BorderSide(color: Colors.black),
-                ),
-                child: ListTile(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24),
-                    // side: BorderSide(color: Colors.black),
-                  ),
-                  tileColor: Provider.of<CreditCard>(context).selectedCard == 2
-                      ? Colors.white
-                      : Color(0xFFF6F6FB),
-                  onTap: () {
-                    // setState(() {
-                    //   selectedCard = 2;
-                    // });
-
-                    Provider.of<CreditCard>(context, listen: false)
-                        .updateValue(2);
-                  },
-                  contentPadding: EdgeInsets.fromLTRB(16, 16, 16, 16),
-                  leading: Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                    child: SvgPicture.asset(
-                      'assets/images/visa.svg',
-                      width: 30,
-                      height: 30,
-                      color: Color(0xFF20225F),
-                    ),
-                  ),
-                  title: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0, 0, 0, 4),
-                        child: Text(
-                          "Primary Card",
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontFamily: "Cairo-VariableFont_wght",
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF01023C),
-                          ),
-                        ),
-                      ),
-                      Text(
-                        "**** **** **** 7879",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: "Cairo-VariableFont_wght",
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF01023C),
-                        ),
-                      ),
-                      Text(
-                        "06/28",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: "Cairo-VariableFont_wght",
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF01023C),
-                        ),
-                      ),
-                    ],
-                  ),
-                  trailing: Container(
-                    width: 150,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                          child: Text(
-                            "Set as Default",
-                            style: TextStyle(
-                              fontSize: 10,
-                              fontFamily: "Cairo-VariableFont_wght",
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF8C8CB1),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                          child: SvgPicture.asset(
-                            'assets/images/dot.svg',
-                            width: 4,
-                            height: 4,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                          child: Text(
-                            "Delete",
-                            style: TextStyle(
-                              fontSize: 10,
-                              fontFamily: "Cairo-VariableFont_wght",
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFFEB1919),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+                          )));
+                } else {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              },
             ),
 
             // PROMOTION CODES PART
