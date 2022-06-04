@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ruut/Pages/finance_page.dart';
+import 'package:ruut/pages/finance_page.dart';
 import 'package:provider/provider.dart';
-import 'package:ruut/Providers/credit_card.dart';
-import 'package:ruut/Providers/promotion_code.dart';
+import 'package:ruut/providers/credit_card.dart';
+import 'package:ruut/providers/promotion_code.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
@@ -28,5 +28,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-

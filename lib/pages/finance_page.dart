@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:math' as math;
 import 'package:provider/provider.dart';
-import 'package:ruut/Models/credit_card_model.dart';
-import 'package:ruut/Models/promotion_code_model.dart';
-import 'package:ruut/Providers/credit_card.dart';
-import 'package:ruut/Providers/promotion_code.dart';
-import 'package:ruut/Services/finance_service.dart';
+import 'package:ruut/models/credit_card_model.dart';
+import 'package:ruut/models/promotion_code_model.dart';
+import 'package:ruut/providers/credit_card.dart';
+import 'package:ruut/providers/promotion_code.dart';
+import 'package:ruut/services/finance_service.dart';
 
 class FinancePage extends StatefulWidget {
   const FinancePage({Key? key}) : super(key: key);
