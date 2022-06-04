@@ -8,18 +8,8 @@ import 'package:ruut/providers/credit_card.dart';
 import 'package:ruut/providers/promotion_code.dart';
 import 'package:ruut/services/finance_service.dart';
 
-class FinancePage extends StatefulWidget {
-  const FinancePage({Key? key}) : super(key: key);
-
-  @override
-  State<FinancePage> createState() => _FinancePageState();
-}
-
-class _FinancePageState extends State<FinancePage> {
-  @override
-  void initState() {
-    super.initState();
-  }
+class FinancePage extends StatelessWidget {
+  FinancePage({Key? key}) : super(key: key);
 
   late double deviceWidth;
   late double deviceHeight;
