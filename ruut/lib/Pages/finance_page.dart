@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:math' as math;
@@ -7,7 +6,7 @@ import 'package:ruut/Models/credit_card_model.dart';
 import 'package:ruut/Models/promotion_code_model.dart';
 import 'package:ruut/Providers/credit_card.dart';
 import 'package:ruut/Providers/promotion_code.dart';
-import 'package:flutter/services.dart' as rootBundle;
+import 'package:ruut/Services/finance_service.dart';
 
 class FinancePage extends StatefulWidget {
   const FinancePage({Key? key}) : super(key: key);
@@ -20,22 +19,6 @@ class _FinancePageState extends State<FinancePage> {
   @override
   void initState() {
     super.initState();
-  }
-
-  Future<List<CreditCardModel>> getCreditCardList() async {
-    final jsondata = await rootBundle.rootBundle
-        .loadString('database/credit_card_list.json');
-    final list = json.decode(jsondata) as List<dynamic>;
-
-    return list.map((e) => CreditCardModel.fromJson(e)).toList();
-  }
-
-  Future<List<PromotionCodeModel>> getPromotionCodeList() async {
-    final jsondata = await rootBundle.rootBundle
-        .loadString('database/promotion_code_list.json');
-    final list = json.decode(jsondata) as List<dynamic>;
-
-    return list.map((e) => PromotionCodeModel.fromJson(e)).toList();
   }
 
   late double deviceWidth;
@@ -293,7 +276,7 @@ class _FinancePageState extends State<FinancePage> {
               ],
             ),
             FutureBuilder(
-              future: getCreditCardList(),
+              future: FinanceService().getCreditCardList(),
               builder: (context, data) {
                 if (data.hasError) {
                   return Center(child: Text("${data.error}"));
@@ -343,7 +326,8 @@ class _FinancePageState extends State<FinancePage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 4),
+                                      padding:
+                                          const EdgeInsets.fromLTRB(0, 0, 0, 4),
                                       child: Text(
                                         items[index].name ?? '',
                                         style: TextStyle(
@@ -487,7 +471,7 @@ class _FinancePageState extends State<FinancePage> {
               ],
             ),
             FutureBuilder(
-              future: getPromotionCodeList(),
+              future: FinanceService().getPromotionCodeList(),
               builder: (context, data) {
                 if (data.hasError) {
                   return Center(child: Text("${data.error}"));
