@@ -295,7 +295,7 @@ class FinancePage extends StatelessWidget {
                                             .selectedCard ==
                                         index
                                     ? Colors.white
-                                    : Color(0xFFF6F6FB),
+                                    : const Color(0xFFF6F6FB),
                                 onTap: () {
                                   Provider.of<CreditCard>(context,
                                           listen: false)
@@ -330,7 +330,7 @@ class FinancePage extends StatelessWidget {
                                     ),
                                     Text(
                                       items[index].cardNumber ?? '',
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 14,
                                         fontFamily: "Cairo-VariableFont_wght",
                                         fontWeight: FontWeight.bold,
@@ -591,7 +591,7 @@ class FinancePage extends StatelessWidget {
                                                 ),
                                               ),
                                               Text(
-                                                "Uses Left",
+                                                " Uses Left",
                                                 style: TextStyle(
                                                   fontSize: 12,
                                                   fontFamily:
@@ -621,7 +621,7 @@ class FinancePage extends StatelessWidget {
                                                 ),
                                               ),
                                               Text(
-                                                "Worth",
+                                                " Worth",
                                                 style: TextStyle(
                                                   fontSize: 12,
                                                   fontFamily:
