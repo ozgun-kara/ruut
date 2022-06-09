@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:ruut/pages/finance_page.dart';
 import 'package:provider/provider.dart';
-import 'package:ruut/providers/credit_card.dart';
-import 'package:ruut/providers/promotion_code.dart';
+import 'package:ruut/providers/finance_page_provider.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
-    ChangeNotifierProvider<CreditCard>(
-      create: (BuildContext context) => CreditCard(),
+    ChangeNotifierProvider<FinancePageProvider>(
+      create: (BuildContext context) => FinancePageProvider(),
     ),
-    ChangeNotifierProvider<PromotionCode>(
-      create: (BuildContext context) => PromotionCode(),
-    )
   ], child: const MyApp()));
 }
 

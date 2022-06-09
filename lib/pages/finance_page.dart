@@ -4,8 +4,7 @@ import 'dart:math' as math;
 import 'package:provider/provider.dart';
 import 'package:ruut/models/credit_card_model.dart';
 import 'package:ruut/models/promotion_code_model.dart';
-import 'package:ruut/providers/credit_card.dart';
-import 'package:ruut/providers/promotion_code.dart';
+import 'package:ruut/providers/finance_page_provider.dart';
 import 'package:ruut/services/finance_service.dart';
 
 class FinancePage extends StatelessWidget {
@@ -279,11 +278,12 @@ class FinancePage extends StatelessWidget {
                       itemBuilder: ((context, index) => Padding(
                             padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
                             child: Material(
-                              elevation: Provider.of<CreditCard>(context)
-                                          .selectedCard ==
-                                      index
-                                  ? 5
-                                  : 0,
+                              elevation:
+                                  Provider.of<FinancePageProvider>(context)
+                                              .selectedCreditCard ==
+                                          index
+                                      ? 5
+                                      : 0,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(24),
                               ),
@@ -291,15 +291,16 @@ class FinancePage extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(24),
                                 ),
-                                tileColor: Provider.of<CreditCard>(context)
-                                            .selectedCard ==
-                                        index
-                                    ? Colors.white
-                                    : const Color(0xFFF6F6FB),
+                                tileColor:
+                                    Provider.of<FinancePageProvider>(context)
+                                                .selectedCreditCard ==
+                                            index
+                                        ? Colors.white
+                                        : const Color(0xFFF6F6FB),
                                 onTap: () {
-                                  Provider.of<CreditCard>(context,
+                                  Provider.of<FinancePageProvider>(context,
                                           listen: false)
-                                      .updateValue(index);
+                                      .updateCreditCardValue(index);
                                 },
                                 contentPadding:
                                     const EdgeInsets.fromLTRB(16, 16, 16, 16),
@@ -497,16 +498,18 @@ class FinancePage extends StatelessWidget {
                                       // tileColor: Colors.white,
 
                                       tileColor:
-                                          Provider.of<PromotionCode>(context)
-                                                      .selectedCode ==
+                                          Provider.of<FinancePageProvider>(
+                                                          context)
+                                                      .selectedPromotionCode ==
                                                   index
                                               ? Colors.white
                                               : Color(0xFFF6F6FB),
 
                                       onTap: () {
-                                        Provider.of<PromotionCode>(context,
+                                        Provider.of<FinancePageProvider>(
+                                                context,
                                                 listen: false)
-                                            .updateValue(index);
+                                            .updatePromotionCodeValue(index);
                                       },
 
                                       contentPadding:
