@@ -10,7 +10,8 @@ import 'package:ruut/services/finance_service.dart';
 class FinancePage extends StatelessWidget {
   FinancePage({Key? key}) : super(key: key);
 
-
+  late double deviceWidth;
+  late double deviceHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -622,16 +623,9 @@ class FinancePage extends StatelessWidget {
                                                   color: Color(0xFF8C8CB1),
                                                 ),
                                               ),
-                                              Text(
-                                                " Worth",
-                                                style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontFamily:
-                                                      "Cairo-VariableFont_wght",
-                                                  fontWeight: FontWeight.w500,
-                                                  color: Color(0xFF8C8CB1),
-                                                ),
-                                              ),
+
+
+
                                             ],
                                           ),
                                           Padding(
