@@ -10,8 +10,7 @@ import 'package:ruut/services/finance_service.dart';
 class FinancePage extends StatelessWidget {
   FinancePage({Key? key}) : super(key: key);
 
-  late double deviceWidth;
-  late double deviceHeight;
+
 
   @override
   Widget build(BuildContext context) {
