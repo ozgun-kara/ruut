@@ -1,4 +1,11 @@
-
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'dart:math' as math;
+import 'package:provider/provider.dart';
+import 'package:ruut/models/credit_card_model.dart';
+import 'package:ruut/models/promotion_code_model.dart';
+import 'package:ruut/providers/finance_page_provider.dart';
+import 'package:ruut/services/finance_service.dart';
 
 class FinancePage extends StatelessWidget {
   FinancePage({Key? key}) : super(key: key);
@@ -32,8 +39,7 @@ class FinancePage extends StatelessWidget {
                 ),
               ),
 			  
-			  
-			  
+			 			  
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -88,6 +94,7 @@ class FinancePage extends StatelessWidget {
               ),
             ),
           )),
+		  
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -122,6 +129,7 @@ class FinancePage extends StatelessWidget {
                 ),
               ],
             ),
+			
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
               child: Container(
