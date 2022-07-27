@@ -1,4 +1,11 @@
-
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'dart:math' as math;
+import 'package:provider/provider.dart';
+import 'package:ruut/models/credit_card_model.dart';
+import 'package:ruut/models/promotion_code_model.dart';
+import 'package:ruut/providers/finance_page_provider.dart';
+import 'package:ruut/services/finance_service.dart';
 
 class FinancePage extends StatelessWidget {
   FinancePage({Key? key}) : super(key: key);
@@ -21,17 +28,7 @@ class FinancePage extends StatelessWidget {
               backgroundColor: Colors.transparent,
               elevation: 0,
               leadingWidth: 80,
-              leading: Builder(
-                builder: (context) => IconButton(
-                  icon: SvgPicture.asset(
-                    'assets/images/ListPlus.svg',
-                    width: 26,
-                    height: 27,
-                  ),
-                  onPressed: () {},
-                ),
-              ),
-			  
+
 			 			  
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
