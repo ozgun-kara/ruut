@@ -15,7 +15,8 @@ class FinancePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    deviceWidth = MediaQuery.of(context).size.width;
+    deviceHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       backgroundColor: const Color(0xFFF6F6FB),
@@ -75,19 +76,7 @@ class FinancePage extends StatelessWidget {
                         onPressed: () async {}),
                   ),
 
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
-                    child: Builder(
-                      builder: (context) => IconButton(
-                        icon: SvgPicture.asset(
-                          'assets/images/Bell.svg',
-                          width: 18.47,
-                          height: 22.4,
-                        ),
-                        onPressed: () {},
-                      ),
-                    ),
-                  ),
+
 
                 ],
               ),
