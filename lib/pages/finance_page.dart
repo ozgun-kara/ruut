@@ -364,20 +364,10 @@ class FinancePage extends StatelessWidget {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Padding(
-                                        padding:
-                                            EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                        child: Text(
-                                          "Set as Default",
-                                          style: TextStyle(
-                                            fontSize: 10,
-                                            fontFamily:
-                                                "Cairo-VariableFont_wght",
-                                            fontWeight: FontWeight.bold,
-                                            color: Color(0xFF8C8CB1),
-                                          ),
-                                        ),
-                                      ),
+
+
+
+
                                       Padding(
                                         padding: const EdgeInsets.fromLTRB(
                                             20, 0, 20, 0),
