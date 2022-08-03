@@ -575,6 +575,7 @@ class FinancePage extends StatelessWidget {
                                                   color: Color(0xFF8C8CB1),
                                                 ),
                                               ),
+
                                               Text(
                                                 items[index].expDate ?? '',
                                                 style: TextStyle(
@@ -585,6 +586,7 @@ class FinancePage extends StatelessWidget {
                                                   color: Color(0xFF8C8CB1),
                                                 ),
                                               ),
+
                                               Padding(
                                                 padding:
                                                     const EdgeInsets.fromLTRB(
@@ -708,20 +710,10 @@ class FinancePage extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  Positioned(
-                                    left: 60,
-                                    top: -18,
-                                    child: Container(
-                                      width: 32,
-                                      height: 30,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15),
-                                        border: Border.all(
-                                            color: Color(0xFFE5E5F0), width: 2),
-                                        color: Color(0xFFF6F6FB),
-                                      ),
-                                    ),
-                                  ),
+
+
+
+
                                   Positioned(
                                     left: 60,
                                     bottom: -18,
