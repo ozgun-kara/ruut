@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import 'package:flutter/material.dart';
 
 class FinancePageProvider with ChangeNotifier {
@@ -11,7 +9,8 @@ class FinancePageProvider with ChangeNotifier {
     notifyListeners();
   }
 
-
-  
+  void updatePromotionCodeValue(int codeIndex) {
+    selectedPromotionCode = codeIndex;
+    notifyListeners();
+  }
 }
->>>>>>> parent of f4479b7 (Update finance_page_provider.dart)
