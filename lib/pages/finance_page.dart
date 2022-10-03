@@ -203,6 +203,7 @@ class FinancePage extends StatelessWidget {
                                   color: Color(0xFFF6F6FB),
                                 ),
                               ),
+
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(14, 0, 0, 0),
                                 child: SvgPicture.asset(
@@ -211,6 +212,7 @@ class FinancePage extends StatelessWidget {
                                   height: 12,
                                 ),
                               ),
+
                             ],
                           ),
                           onPressed: () async {}),
