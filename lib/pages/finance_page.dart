@@ -64,7 +64,14 @@ class FinancePage extends StatelessWidget {
                               width: 19.63,
                               height: 19.63,
                             ),
-
+                            const Text(
+                              'Get \$50',
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  fontFamily: "Cairo-VariableFont_wght",
+                                  fontWeight: FontWeight.w900,
+                                  color: Color(0xFF28CB69)),
+                            ),
 
 
                           ],
