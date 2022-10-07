@@ -1,4 +1,11 @@
-
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'dart:math' as math;
+import 'package:provider/provider.dart';
+import 'package:ruut/models/credit_card_model.dart';
+import 'package:ruut/models/promotion_code_model.dart';
+import 'package:ruut/providers/finance_page_provider.dart';
+import 'package:ruut/services/finance_service.dart';
 
 class FinancePage extends StatelessWidget {
   FinancePage({Key? key}) : super(key: key);
@@ -57,14 +64,9 @@ class FinancePage extends StatelessWidget {
                               width: 19.63,
                               height: 19.63,
                             ),
-                            const Text(
-                              'Get \$50',
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  fontFamily: "Cairo-VariableFont_wght",
-                                  fontWeight: FontWeight.w900,
-                                  color: Color(0xFF28CB69)),
-                            ),
+
+
+
                           ],
                         ),
                         onPressed: () async {}),
