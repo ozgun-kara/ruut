@@ -5,16 +5,15 @@ import 'package:ruut/models/promotion_code_model.dart';
 
 class FinanceService {
 
-  Future<List<CreditCardModel>> getCreditCardList() async {
+
+
+  Future<List<PromotionCodeModel>> getPromotionCodeList() async {
     final jsondata = await rootBundle.rootBundle
-        .loadString('database/credit_card_list.json');
+        .loadString('database/promotion_code_list.json');
     final list = json.decode(jsondata) as List<dynamic>;
 
-    return list.map((e) => CreditCardModel.fromJson(e)).toList();
+    return list.map((e) => PromotionCodeModel.fromJson(e)).toList();
   }
-
-
-
   
   
 }
