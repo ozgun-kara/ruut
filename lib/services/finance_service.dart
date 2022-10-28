@@ -14,6 +14,13 @@ class FinanceService {
   }
 
 
+  Future<List<PromotionCodeModel>> getPromotionCodeList() async {
+    final jsondata = await rootBundle.rootBundle
+        .loadString('database/promotion_code_list.json');
+    final list = json.decode(jsondata) as List<dynamic>;
 
+    return list.map((e) => PromotionCodeModel.fromJson(e)).toList();
+  }
+  
   
 }
