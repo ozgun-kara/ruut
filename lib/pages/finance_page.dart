@@ -79,7 +79,19 @@ class FinancePage extends StatelessWidget {
                         onPressed: () async {}),
                   ),
 				  
-
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+                    child: Builder(
+                      builder: (context) => IconButton(
+                        icon: SvgPicture.asset(
+                          'assets/images/Bell.svg',
+                          width: 18.47,
+                          height: 22.4,
+                        ),
+                        onPressed: () {},
+                      ),
+                    ),
+                  ),
 
                 ],
               ),
@@ -107,17 +119,9 @@ class FinancePage extends StatelessWidget {
                             color: Color(0xFF01023C)),
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
-                      child: Text(
-                        "Lorem Ipsum Dolor Sit Amed",
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontFamily: "Cairo-VariableFont_wght",
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF8C8CB1)),
-                      ),
-                    ),
+
+
+
                   ],
                 ),
 				
