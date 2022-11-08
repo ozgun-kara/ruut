@@ -170,18 +170,7 @@ class FinancePage extends StatelessWidget {
                       ),
                     ),
 
-                    const Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                      child: Text(
-                        "\$1,250",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: "Cairo-VariableFont_wght",
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFFF6F6FB),
-                        ),
-                      ),
-                    ),
+
 
                     ButtonTheme(
                       minWidth: 98,
@@ -208,6 +197,14 @@ class FinancePage extends StatelessWidget {
                                 ),
                               ),
 
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(14, 0, 0, 0),
+                                child: SvgPicture.asset(
+                                  'assets/images/CaretDown.svg',
+                                  width: 12,
+                                  height: 12,
+                                ),
+                              ),
 
                             ],
                           ),
