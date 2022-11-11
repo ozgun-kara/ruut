@@ -79,7 +79,19 @@ class FinancePage extends StatelessWidget {
                         onPressed: () async {}),
                   ),
 				  
-
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+                    child: Builder(
+                      builder: (context) => IconButton(
+                        icon: SvgPicture.asset(
+                          'assets/images/Bell.svg',
+                          width: 18.47,
+                          height: 22.4,
+                        ),
+                        onPressed: () {},
+                      ),
+                    ),
+                  ),
 
                 ],
               ),
@@ -137,14 +149,9 @@ class FinancePage extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                      child: SvgPicture.asset(
-                        'assets/images/Coins.svg',
-                        width: 26,
-                        height: 27,
-                      ),
-                    ),
+
+
+
                     const Padding(
                       padding: EdgeInsets.fromLTRB(25, 0, 0, 0),
                       child: Text(
