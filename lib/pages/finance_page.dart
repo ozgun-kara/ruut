@@ -328,7 +328,15 @@ class FinancePage extends StatelessWidget {
                                 },
                                 contentPadding:
                                     const EdgeInsets.fromLTRB(16, 16, 16, 16),
-
+                                leading: Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                                  child: SvgPicture.asset(
+                                    items[index].icon ?? '',
+                                    width: 30,
+                                    height: 24,
+                                  ),
+                                ),
                                 title: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
