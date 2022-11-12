@@ -150,7 +150,14 @@ class FinancePage extends StatelessWidget {
                 child: Row(
                   children: [
 
-
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                      child: SvgPicture.asset(
+                        'assets/images/Coins.svg',
+                        width: 26,
+                        height: 27,
+                      ),
+                    ),
 
                     const Padding(
                       padding: EdgeInsets.fromLTRB(25, 0, 0, 0),
@@ -321,15 +328,7 @@ class FinancePage extends StatelessWidget {
                                 },
                                 contentPadding:
                                     const EdgeInsets.fromLTRB(16, 16, 16, 16),
-                                leading: Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                                  child: SvgPicture.asset(
-                                    items[index].icon ?? '',
-                                    width: 30,
-                                    height: 24,
-                                  ),
-                                ),
+
                                 title: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
