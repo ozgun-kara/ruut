@@ -172,7 +172,18 @@ class FinancePage extends StatelessWidget {
                       ),
                     ),
 
-
+                    const Padding(
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      child: Text(
+                        "\$1,250",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: "Cairo-VariableFont_wght",
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFFF6F6FB),
+                        ),
+                      ),
+                    ),
 
                     ButtonTheme(
                       minWidth: 98,
@@ -235,45 +246,7 @@ class FinancePage extends StatelessWidget {
                   ),
                 ),
 
-                ButtonTheme(
-                  minWidth: 98,
-                  height: 30,
-                  child: MaterialButton(
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(24),
-                            topRight: Radius.circular(24),
-                            bottomLeft: Radius.circular(24),
-                            bottomRight: Radius.circular(24)),
-                      ),
-                      color: const Color(0xFFF6F6FB),
-                      elevation: 0,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Text(
-                            'ADD NEW',
-                            style: TextStyle(
-                              fontSize: 10,
-                              letterSpacing: 1,
-                              fontFamily: "Cairo-VariableFont_wght",
-                              fontWeight: FontWeight.w500,
-                              color: Color(0xFF4D4E74),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
-                            child: SvgPicture.asset(
-                              'assets/images/Plus.svg',
-                              width: 8,
-                              height: 8,
-                            ),
-                          ),
-                        ],
-                      ),
 
-                      onPressed: () async {}),
-                ),
 				
               ],
             ),
