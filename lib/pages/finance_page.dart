@@ -630,17 +630,10 @@ class FinancePage extends StatelessWidget {
                                                 ),
                                               ),
 
-                                              Text(
-                                                " Uses Left",
-                                                style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontFamily:
-                                                      "Cairo-VariableFont_wght",
-                                                  fontWeight: FontWeight.w500,
-                                                  color: Color(0xFF8C8CB1),
-                                                ),
 
-                                              ),
+
+
+
                                               Padding(
                                                 padding:
                                                     const EdgeInsets.fromLTRB(
