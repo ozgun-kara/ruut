@@ -405,20 +405,11 @@ class FinancePage extends StatelessWidget {
                                           height: 4,
                                         ),
                                       ),
-                                      Padding(
-                                        padding:
-                                            EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                        child: Text(
-                                          "Delete",
-                                          style: TextStyle(
-                                            fontSize: 10,
-                                            fontFamily:
-                                                "Cairo-VariableFont_wght",
-                                            fontWeight: FontWeight.bold,
-                                            color: Color(0xFFEB1919),
-                                          ),
-                                        ),
-                                      ),
+
+
+
+
+
                                     ],
                                   ),
                                 ),
