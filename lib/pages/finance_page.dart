@@ -211,6 +211,14 @@ class FinancePage extends StatelessWidget {
                                 ),
                               ),
 
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(14, 0, 0, 0),
+                                child: SvgPicture.asset(
+                                  'assets/images/CaretDown.svg',
+                                  width: 12,
+                                  height: 12,
+                                ),
+                              ),
 
                             ],
                           ),
@@ -333,19 +341,7 @@ class FinancePage extends StatelessWidget {
                                 title: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.fromLTRB(0, 0, 0, 4),
-                                      child: Text(
-                                        items[index].name ?? '',
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          fontFamily: "Cairo-VariableFont_wght",
-                                          fontWeight: FontWeight.w500,
-                                          color: Color(0xFF01023C),
-                                        ),
-                                      ),
-                                    ),
+
                                     Text(
                                       items[index].cardNumber ?? '',
                                       style: const TextStyle(
