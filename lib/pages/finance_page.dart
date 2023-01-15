@@ -354,7 +354,24 @@ class FinancePage extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-
+                                    Text(
+                                      items[index].cardNumber ?? '',
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        fontFamily: "Cairo-VariableFont_wght",
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFF01023C),
+                                      ),
+                                    ),
+                                    Text(
+                                      items[index].expDate ?? '',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontFamily: "Cairo-VariableFont_wght",
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFF01023C),
+                                      ),
+                                    ),
                                   ],
                                 ),
                                 trailing: Container(
@@ -422,18 +439,7 @@ class FinancePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
 
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(32, 0, 0, 0),
-                  child: Text(
-                    "Promotion Codes",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: "Cairo-VariableFont_wght",
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF4D4E74),
-                    ),
-                  ),
-                ),
+
 
                 ButtonTheme(
                   minWidth: 98,
