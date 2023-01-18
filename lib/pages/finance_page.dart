@@ -44,7 +44,40 @@ class FinancePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
 
+                  ButtonTheme(
+                    minWidth: 98,
+                    height: 30,
+                    child: MaterialButton(
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(24),
+                              topRight: Radius.circular(24),
+                              bottomLeft: Radius.circular(24),
+                              bottomRight: Radius.circular(24)),
+                        ),
+                        color: const Color(0xFF01023C),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            SvgPicture.asset(
+                              'assets/images/Gift.svg',
+                              width: 19.63,
+                              height: 19.63,
+                            ),
+                            const Text(
+                              'Get \$50',
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  fontFamily: "Cairo-VariableFont_wght",
+                                  fontWeight: FontWeight.w900,
+                                  color: Color(0xFF28CB69)),
+                            ),
 
+
+                          ],
+                        ),
+                        onPressed: () async {}),
+                  ),
           
                   Padding(
                     padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
@@ -88,17 +121,7 @@ class FinancePage extends StatelessWidget {
                       ),
                     ),
 
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
-                      child: Text(
-                        "Lorem Ipsum Dolor Sit Amed",
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontFamily: "Cairo-VariableFont_wght",
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF8C8CB1)),
-                      ),
-                    ),
+
 
                   ],
                 ),
