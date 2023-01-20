@@ -151,7 +151,14 @@ class FinancePage extends StatelessWidget {
                 child: Row(
                   children: [
 
-
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                      child: SvgPicture.asset(
+                        'assets/images/Coins.svg',
+                        width: 26,
+                        height: 27,
+                      ),
+                    ),
 
                     const Padding(
                       padding: EdgeInsets.fromLTRB(25, 0, 0, 0),
@@ -373,20 +380,7 @@ class FinancePage extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
 
-                                      Padding(
-                                        padding:
-                                            EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                        child: Text(
-                                          "Set as Default",
-                                          style: TextStyle(
-                                            fontSize: 10,
-                                            fontFamily:
-                                                "Cairo-VariableFont_wght",
-                                            fontWeight: FontWeight.bold,
-                                            color: Color(0xFF8C8CB1),
-                                          ),
-                                        ),
-                                      ),
+
 
                                       Padding(
                                         padding: const EdgeInsets.fromLTRB(
