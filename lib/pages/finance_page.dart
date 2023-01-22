@@ -1,4 +1,11 @@
-
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'dart:math' as math;
+import 'package:provider/provider.dart';
+import 'package:ruut/models/credit_card_model.dart';
+import 'package:ruut/models/promotion_code_model.dart';
+import 'package:ruut/providers/finance_page_provider.dart';
+import 'package:ruut/services/finance_service.dart';
 
 class FinancePage extends StatelessWidget {
   FinancePage({Key? key}) : super(key: key);
@@ -114,17 +121,6 @@ class FinancePage extends StatelessWidget {
                       ),
                     ),
 
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
-                      child: Text(
-                        "Lorem Ipsum Dolor Sit Amed",
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontFamily: "Cairo-VariableFont_wght",
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF8C8CB1)),
-                      ),
-                    ),
 
                   ],
                 ),
