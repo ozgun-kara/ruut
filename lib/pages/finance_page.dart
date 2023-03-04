@@ -109,7 +109,29 @@ class FinancePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
 
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
+                      child: Text(
+                        "Finance",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontFamily: "Cairo-VariableFont_wght",
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF01023C)),
+                      ),
+                    ),
 
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
+                      child: Text(
+                        "Lorem Ipsum Dolor Sit Amed",
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: "Cairo-VariableFont_wght",
+                            fontWeight: FontWeight.w500,
+                            color: Color(0xFF8C8CB1)),
+                      ),
+                    ),
 
                   ],
                 ),
@@ -138,31 +160,7 @@ class FinancePage extends StatelessWidget {
                       ),
                     ),
 
-                    const Padding(
-                      padding: EdgeInsets.fromLTRB(25, 0, 0, 0),
-                      child: Text(
-                        "Your Balance: ",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: "Cairo-VariableFont_wght",
-                          fontWeight: FontWeight.w500,
-                          color: Color(0xFFF6F6FB),
-                        ),
-                      ),
-                    ),
-                
-                    const Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                      child: Text(
-                        "\$1,250",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: "Cairo-VariableFont_wght",
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFFF6F6FB),
-                        ),
-                      ),
-                    ),
+
 
                     ButtonTheme(
                       minWidth: 98,
