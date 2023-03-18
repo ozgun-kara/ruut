@@ -211,7 +211,14 @@ class FinancePage extends StatelessWidget {
                                 ),
                               ),
 
-
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(14, 0, 0, 0),
+                                child: SvgPicture.asset(
+                                  'assets/images/CaretDown.svg',
+                                  width: 12,
+                                  height: 12,
+                                ),
+                              ),
 
                             ],
                           ),
