@@ -1,4 +1,11 @@
-
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'dart:math' as math;
+import 'package:provider/provider.dart';
+import 'package:ruut/models/credit_card_model.dart';
+import 'package:ruut/models/promotion_code_model.dart';
+import 'package:ruut/providers/finance_page_provider.dart';
+import 'package:ruut/services/finance_service.dart';
 
 class FinancePage extends StatelessWidget {
   FinancePage({Key? key}) : super(key: key);
@@ -144,27 +151,7 @@ class FinancePage extends StatelessWidget {
                 child: Row(
                   children: [
 
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                      child: SvgPicture.asset(
-                        'assets/images/Coins.svg',
-                        width: 26,
-                        height: 27,
-                      ),
-                    ),
 
-                    const Padding(
-                      padding: EdgeInsets.fromLTRB(25, 0, 0, 0),
-                      child: Text(
-                        "Your Balance: ",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: "Cairo-VariableFont_wght",
-                          fontWeight: FontWeight.w500,
-                          color: Color(0xFFF6F6FB),
-                        ),
-                      ),
-                    ),
                 
                     const Padding(
                       padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
