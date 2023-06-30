@@ -1,4 +1,11 @@
-
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'dart:math' as math;
+import 'package:provider/provider.dart';
+import 'package:ruut/models/credit_card_model.dart';
+import 'package:ruut/models/promotion_code_model.dart';
+import 'package:ruut/providers/finance_page_provider.dart';
+import 'package:ruut/services/finance_service.dart';
 
 class FinancePage extends StatelessWidget {
   FinancePage({Key? key}) : super(key: key);
@@ -102,17 +109,7 @@ class FinancePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
 
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
-                      child: Text(
-                        "Finance",
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontFamily: "Cairo-VariableFont_wght",
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF01023C)),
-                      ),
-                    ),
+
 
                     Padding(
                       padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
