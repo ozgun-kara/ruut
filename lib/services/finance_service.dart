@@ -304,7 +304,24 @@ class _FinancePageState extends State<FinancePage> {
                           ),
                         ),
                       ),
-
+                      Text(
+                        "**** **** **** 0003",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: "Cairo-VariableFont_wght",
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF01023C),
+                        ),
+                      ),
+                      Text(
+                        "03/26",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: "Cairo-VariableFont_wght",
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF01023C),
+                        ),
+                      ),
                     ],
                   ),
                   trailing: Container(
