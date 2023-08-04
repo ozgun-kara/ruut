@@ -342,7 +342,14 @@ class _FinancePageState extends State<FinancePage> {
                             ),
                           ),
                         ),
-
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                          child: SvgPicture.asset(
+                            'assets/images/dot.svg',
+                            width: 4,
+                            height: 4,
+                          ),
+                        ),
                         Padding(
                           padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                           child: Text(
