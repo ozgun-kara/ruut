@@ -93,37 +93,7 @@ class _FinancePageState extends State<FinancePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
-                      child: Text(
-                        "Finance",
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontFamily: "Cairo-VariableFont_wght",
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF01023C)),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
-                      child: Text(
-                        "Lorem Ipsum Dolor Sit Amed",
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontFamily: "Cairo-VariableFont_wght",
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF8C8CB1)),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
               child: Container(
