@@ -24,5 +24,4 @@ class CreditCardModel {
     data['icon'] = icon;
     return data;
   }
-
 }
