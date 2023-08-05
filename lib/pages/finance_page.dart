@@ -38,12 +38,9 @@ class FinancePage extends StatelessWidget {
                   onPressed: () {},
                 ),
               ),
-        
-              
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-
                   ButtonTheme(
                     minWidth: 98,
                     height: 30,
@@ -72,13 +69,10 @@ class FinancePage extends StatelessWidget {
                                   fontWeight: FontWeight.w900,
                                   color: Color(0xFF28CB69)),
                             ),
-
-
                           ],
                         ),
                         onPressed: () async {}),
                   ),
-          
                   Padding(
                     padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
                     child: Builder(
@@ -92,23 +86,18 @@ class FinancePage extends StatelessWidget {
                       ),
                     ),
                   ),
-
                 ],
               ),
             ),
           )),
-      
       body: SingleChildScrollView(
         child: Column(
           children: [
-
             Row(
               children: [
-
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
-
                     Padding(
                       padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
                       child: Text(
@@ -120,7 +109,6 @@ class FinancePage extends StatelessWidget {
                             color: Color(0xFF01023C)),
                       ),
                     ),
-
                     Padding(
                       padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
                       child: Text(
@@ -132,13 +120,10 @@ class FinancePage extends StatelessWidget {
                             color: Color(0xFF8C8CB1)),
                       ),
                     ),
-
                   ],
                 ),
-        
               ],
             ),
-    
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
               child: Container(
@@ -150,9 +135,26 @@ class FinancePage extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-
-
-                
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                      child: SvgPicture.asset(
+                        'assets/images/Coins.svg',
+                        width: 26,
+                        height: 27,
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.fromLTRB(25, 0, 0, 0),
+                      child: Text(
+                        "Your Balance: ",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: "Cairo-VariableFont_wght",
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFFF6F6FB),
+                        ),
+                      ),
+                    ),
                     const Padding(
                       padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                       child: Text(
@@ -165,7 +167,6 @@ class FinancePage extends StatelessWidget {
                         ),
                       ),
                     ),
-
                     ButtonTheme(
                       minWidth: 98,
                       height: 30,
@@ -190,7 +191,6 @@ class FinancePage extends StatelessWidget {
                                   color: Color(0xFFF6F6FB),
                                 ),
                               ),
-
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(14, 0, 0, 0),
                                 child: SvgPicture.asset(
@@ -199,12 +199,10 @@ class FinancePage extends StatelessWidget {
                                   height: 12,
                                 ),
                               ),
-
                             ],
                           ),
                           onPressed: () async {}),
                     ),
-
                   ],
                 ),
               ),
@@ -226,7 +224,6 @@ class FinancePage extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 ButtonTheme(
                   minWidth: 98,
                   height: 30,
@@ -263,10 +260,8 @@ class FinancePage extends StatelessWidget {
                           ),
                         ],
                       ),
-
                       onPressed: () async {}),
                 ),
-        
               ],
             ),
             FutureBuilder(
@@ -359,7 +354,6 @@ class FinancePage extends StatelessWidget {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-
                                       Padding(
                                         padding:
                                             EdgeInsets.fromLTRB(0, 0, 0, 0),
@@ -374,7 +368,6 @@ class FinancePage extends StatelessWidget {
                                           ),
                                         ),
                                       ),
-
                                       Padding(
                                         padding: const EdgeInsets.fromLTRB(
                                             20, 0, 20, 0),
@@ -384,7 +377,6 @@ class FinancePage extends StatelessWidget {
                                           height: 4,
                                         ),
                                       ),
-
                                       Padding(
                                         padding:
                                             EdgeInsets.fromLTRB(0, 0, 0, 0),
@@ -399,7 +391,6 @@ class FinancePage extends StatelessWidget {
                                           ),
                                         ),
                                       ),
-
                                     ],
                                   ),
                                 ),
@@ -418,8 +409,6 @@ class FinancePage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-
-
                 const Padding(
                   padding: EdgeInsets.fromLTRB(32, 0, 0, 0),
                   child: Text(
@@ -432,8 +421,6 @@ class FinancePage extends StatelessWidget {
                     ),
                   ),
                 ),
-
-                
                 ButtonTheme(
                   minWidth: 98,
                   height: 30,
@@ -472,7 +459,6 @@ class FinancePage extends StatelessWidget {
                       ),
                       onPressed: () async {}),
                 ),
-
               ],
             ),
             FutureBuilder(
@@ -577,7 +563,6 @@ class FinancePage extends StatelessWidget {
                                                   color: Color(0xFF8C8CB1),
                                                 ),
                                               ),
-
                                               Text(
                                                 items[index].expDate ?? '',
                                                 style: TextStyle(
@@ -588,7 +573,6 @@ class FinancePage extends StatelessWidget {
                                                   color: Color(0xFF8C8CB1),
                                                 ),
                                               ),
-
                                               Padding(
                                                 padding:
                                                     const EdgeInsets.fromLTRB(
@@ -599,7 +583,6 @@ class FinancePage extends StatelessWidget {
                                                   height: 4,
                                                 ),
                                               ),
-
                                               Text(
                                                 items[index].usesLeft ?? '',
                                                 style: TextStyle(
@@ -610,7 +593,6 @@ class FinancePage extends StatelessWidget {
                                                   color: Color(0xFF8C8CB1),
                                                 ),
                                               ),
-s
                                               Text(
                                                 " Uses Left",
                                                 style: TextStyle(
@@ -620,9 +602,7 @@ s
                                                   fontWeight: FontWeight.w500,
                                                   color: Color(0xFF8C8CB1),
                                                 ),
-
                                               ),
-
                                               Padding(
                                                 padding:
                                                     const EdgeInsets.fromLTRB(
@@ -633,7 +613,6 @@ s
                                                   height: 4,
                                                 ),
                                               ),
-
                                               Text(
                                                 items[index].worth ?? '',
                                                 style: TextStyle(
@@ -644,7 +623,6 @@ s
                                                   color: Color(0xFF8C8CB1),
                                                 ),
                                               ),
-                        
                                               Text(
                                                 " Worth",
                                                 style: TextStyle(
@@ -655,7 +633,6 @@ s
                                                   color: Color(0xFF8C8CB1),
                                                 ),
                                               ),
-
                                             ],
                                           ),
                                           Padding(
@@ -718,7 +695,6 @@ s
                                       ),
                                     ),
                                   ),
-
                                   Positioned(
                                     left: 60,
                                     top: -18,
@@ -733,7 +709,6 @@ s
                                       ),
                                     ),
                                   ),
-
                                   Positioned(
                                     left: 60,
                                     bottom: -18,
