@@ -93,7 +93,6 @@ class FinancePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-
             Row(
               children: [
                 Column(
@@ -125,9 +124,6 @@ class FinancePage extends StatelessWidget {
                 ),
               ],
             ),
-
-
-
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
               child: Container(
