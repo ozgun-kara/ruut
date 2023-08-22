@@ -98,17 +98,11 @@ class FinancePage extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
-                      child: Text(
-                        "Finance",
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontFamily: "Cairo-VariableFont_wght",
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF01023C)),
-                      ),
-                    ),
+
+
+
+
+
                     Padding(
                       padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
                       child: Text(
