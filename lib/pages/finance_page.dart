@@ -112,17 +112,7 @@ class FinancePage extends StatelessWidget {
                       ),
                     ),
 
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(30, 0, 0, 0),
-                      child: Text(
-                        "Lorem Ipsum Dolor Sit Amed",
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontFamily: "Cairo-VariableFont_wght",
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF8C8CB1)),
-                      ),
-                    ),
+
                   ],
                 ),
               ],
