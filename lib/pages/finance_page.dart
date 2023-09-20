@@ -419,6 +419,8 @@ class FinancePage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+
+
                 const Padding(
                   padding: EdgeInsets.fromLTRB(32, 0, 0, 0),
                   child: Text(
