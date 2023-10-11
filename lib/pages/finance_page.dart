@@ -620,16 +620,7 @@ class FinancePage extends StatelessWidget {
                                                   color: Color(0xFF8C8CB1),
                                                 ),
                                               ),
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.fromLTRB(
-                                                        12, 0, 12, 0),
-                                                child: SvgPicture.asset(
-                                                  'assets/images/dot.svg',
-                                                  width: 4,
-                                                  height: 4,
-                                                ),
-                                              ),
+     
                                               Text(
                                                 items[index].worth ?? '',
                                                 style: TextStyle(
