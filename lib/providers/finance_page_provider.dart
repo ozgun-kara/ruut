@@ -4,10 +4,10 @@ class FinancePageProvider with ChangeNotifier {
   int selectedCreditCard = 0;
   int selectedPromotionCode = 0;
 
-
-
-  void updatePromotionCodeValue(int codeIndex) {
-    selectedPromotionCode = codeIndex;
+  void updateCreditCardValue(int cardIndex) {
+    selectedCreditCard = cardIndex;
     notifyListeners();
   }
+
+
 }
