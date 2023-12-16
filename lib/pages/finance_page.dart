@@ -351,15 +351,10 @@ class FinancePage extends StatelessWidget {
                                         color: Color(0xFF01023C),
                                       ),
                                     ),
-                                    Text(
-                                      items[index].expDate ?? '',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontFamily: "Cairo-VariableFont_wght",
-                                        fontWeight: FontWeight.bold,
-                                        color: Color(0xFF01023C),
-                                      ),
-                                    ),
+
+
+
+
                                   ],
                                 ),
                                 trailing: Container(
