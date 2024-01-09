@@ -15,5 +15,13 @@ class CreditCardModel {
     icon = json['icon'];
   }
 
-
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['cardNumber'] = cardNumber;
+    data['expDate'] = expDate;
+    data['icon'] = icon;
+    return data;
+  }
 }
