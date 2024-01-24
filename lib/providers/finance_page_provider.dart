@@ -9,8 +9,5 @@ class FinancePageProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void updatePromotionCodeValue(int codeIndex) {
-    selectedPromotionCode = codeIndex;
-    notifyListeners();
-  }
+
 }
