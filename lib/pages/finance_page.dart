@@ -151,7 +151,18 @@ class FinancePage extends StatelessWidget {
                       ),
                     ),
 
-
+                    const Padding(
+                      padding: EdgeInsets.fromLTRB(25, 0, 0, 0),
+                      child: Text(
+                        "Your Balance: ",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: "Cairo-VariableFont_wght",
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFFF6F6FB),
+                        ),
+                      ),
+                    ),
 
                     const Padding(
                       padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
@@ -166,42 +177,7 @@ class FinancePage extends StatelessWidget {
                       ),
                     ),
 
-                    ButtonTheme(
-                      minWidth: 98,
-                      height: 30,
-                      child: MaterialButton(
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(24),
-                                topRight: Radius.circular(24),
-                                bottomLeft: Radius.circular(24),
-                                bottomRight: Radius.circular(24)),
-                          ),
-                          color: const Color(0xFF01023C),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const Text(
-                                'MANAGE YOUR BALANCE',
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  fontFamily: "Cairo-VariableFont_wght",
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFFF6F6FB),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(14, 0, 0, 0),
-                                child: SvgPicture.asset(
-                                  'assets/images/CaretDown.svg',
-                                  width: 12,
-                                  height: 12,
-                                ),
-                              ),
-                            ],
-                          ),
-                          onPressed: () async {}),
-                    ),
+
 
                   ],
                 ),
