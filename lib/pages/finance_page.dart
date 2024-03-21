@@ -731,20 +731,7 @@ class FinancePage extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  Positioned(
-                                    left: 60,
-                                    bottom: -18,
-                                    child: Container(
-                                      width: 32,
-                                      height: 30,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15),
-                                        border: Border.all(
-                                            color: Color(0xFFE5E5F0), width: 2),
-                                        color: Color(0xFFF6F6FB),
-                                      ),
-                                    ),
-                                  )
+
                                 ],
                               ),
                             ),
