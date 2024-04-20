@@ -151,18 +151,7 @@ class FinancePage extends StatelessWidget {
                       ),
                     ),
 
-                    const Padding(
-                      padding: EdgeInsets.fromLTRB(25, 0, 0, 0),
-                      child: Text(
-                        "Your Balance: ",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: "Cairo-VariableFont_wght",
-                          fontWeight: FontWeight.w500,
-                          color: Color(0xFFF6F6FB),
-                        ),
-                      ),
-                    ),
+
 
                     const Padding(
                       padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
